@@ -13,6 +13,7 @@
     "gulp-connect": "^5.7.0",
     "gulp-file-include": "^2.0.1",
     "gulp-sass": "^4.0.2",
-    "gulp-webserver": "^0.9.1"
+    "gulp-webserver": "^0.9.1",
+    "gulp.spritesmith": "^6.9.0"
   }
 }

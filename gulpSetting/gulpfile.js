@@ -2,6 +2,7 @@ var fileinclude = require("gulp-file-include"),
 	sass = require("gulp-sass"),
 	connect = require("gulp-connect"),
 	webserver = require("gulp-webserver"),
+	spritesmith = require("gulp.spritesmith"),
 	gulp = require("gulp");
 
 // html include
@@ -59,4 +60,17 @@ gulp.task("webserver", function(){
 	}));
 });
 
-gulp.task("live2", gulp.series("webserver"))
+gulp.task("live2", gulp.series("webserver"));
+
+// image sprite
+gulp.task("sprite", function(){
+	var spriteData = gulp.src("./app/src/img/*.png")
+	.pipe(spritesmith({
+		imgName : "sp_all.png",
+		padding : 4,
+		cssName : "sp_all.css",
+		imgPath : "./sp_all.png"
+	}));
+	return spriteData.pipe(gulp.dest("./sp_img/"));
+});
+
