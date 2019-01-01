@@ -1,6 +1,7 @@
 var fileinclude = require("gulp-file-include"),
 	sass = require("gulp-sass"),
 	connect = require("gulp-connect"),
+	webserver = require("gulp-webserver"),
 	gulp = require("gulp");
 
 // html include
@@ -35,7 +36,7 @@ gulp.task("connect", function(){
 });
 
 gulp.task("html", function(){
-	gulp.src("./app/src/*.html")
+	return gulp.src("./app/src/*.html")
 	.pipe(connect.reload());
 });
 
@@ -47,3 +48,15 @@ gulp.task("watch", function(){
 gulp.task("live", gulp.series("connect", "watch", function(done){
 	done();
 }));
+
+// gulp-webserver // 서버 2
+gulp.task("webserver", function(){
+	return gulp.src("./app/src")
+	.pipe(webserver({
+		livereload:true,
+		open:true,
+		port:8888
+	}));
+});
+
+gulp.task("live2", gulp.series("webserver"))
